@@ -1,22 +1,51 @@
 <template>
-    <div>
-        <div>A simple counter</div>
-        <div>The counter is {{ store.count }} and the double count is {{ store.doubleCount }}</div>
-        <button @click="store.increment">Increment</button>
+    <div class="app">
+        <div class="header">
+            <span>Points: {{ store.points }}</span>
+            <span>{{ store.timeout ? 'TIMEOUT' : '' }}</span>
+            <button :disabled="store.progress === GAMESTATE.NEW" @click="reset">
+                {{ store.progress === GAMESTATE.INPROGRESS ? 'Reset' : 'New' }}
+            </button>
+        </div>
+        <board />
     </div>
 </template>
+
 <script>
 import { defineComponent } from '@vue/composition-api';
-import { useCustomStore } from '../stores/custom.js';
+import { useGameStore } from '../stores/game';
 
-export default {
+import GAMESTATE from '../consts/enums'
+import Board from '../Components/Board'
+
+export default defineComponent({
     name: "app",
+    components: { Board },
     setup() {
-        const store = useCustomStore();
-        return { store };
+        const store = useGameStore();
+        const reset = () => { store.$reset(); }
+        return { store, GAMESTATE, reset };
     }
-};
+}); 
 </script>
-<style>
 
+<style>
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.app {
+    max-width: 700px;
+    width: 90vw;
+    position: fixed;
+    height: max-content;
+    inset: 0;
+    margin: auto;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    margin-block: 10px;
+}
 </style>
