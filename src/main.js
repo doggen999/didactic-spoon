@@ -1,5 +1,6 @@
 import Vue from "vue";
 import { createPinia, PiniaVuePlugin } from "pinia";
+
 import App from "./Components/App";
 
 Vue.use(PiniaVuePlugin);
