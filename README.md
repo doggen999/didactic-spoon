@@ -14,3 +14,13 @@ POC of rewriting an existing [React app](https://github.com/doggen999/fluffy-oct
 `Node v14.16.1`
 
 `yarn v1.22.19`
+
+# Gameplay
+Select a pair of cards with the same color to win a point.
+
+If you select an incorrect pair of card you'll lose a point. 
+
+After each selected pair the game will freeze for 2 seconds
+before you can make another move. 
+
+Please enjoy!
